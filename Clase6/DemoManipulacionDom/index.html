@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Manipulando Nodos del DOM</title>
+        <link rel="stylesheet" href="estilos.css">
+    </head>
+    <body>
+        <h1>Manipulacion de Nodos</h1>
+
+        <div id="cuadro">
+            <h4 id="primero">Jose</h4>
+            <h4 id="segundo">Marcelo</h4>
+            <h4 id="tercero">Martin</h4>
+        </div>
+
+        <p>Pulsar los siguientes botones , para modificar los textos de la caja de la derecha </p>
+        <br>
+        <button onclick="cambiar()">Mover a Marcelo en ultimo lugar</button>
+        <br><br>
+        <button onclick="debajo()">Inserta o mueve mi nombre debajo de todos </button>
+        <br><br>
+        <button onclick="reemplazar()">Reemplazar a Jose por mi nombre</button>
+        <br><br>
+        <button id="miBoton" onclick="suprimir()">Suprimir a Martin</button>
+        <br><br>
+        <button onclick="restaurar()">Pulsar para restaurar el cuadro al estado inicial</button>
+
+        <br><br>
+        <button onclick="modificarEstilo()">Pulsar para modificar Style</button>
+
+        <script src="codigo.js"></script>
+    </body>
+</html>

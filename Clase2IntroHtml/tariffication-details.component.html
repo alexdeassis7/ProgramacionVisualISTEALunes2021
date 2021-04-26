@@ -1,0 +1,852 @@
+<ap-page>
+    
+    <ap-page-title>
+
+        {{ 'TARIFFICATION.LABELS.DETAIL.TITLE' | translate }} {{data[0].productName}} 
+
+    </ap-page-title>
+
+    <ap-page-content>
+
+        <ap-panel>
+
+            <ap-panel-content>
+                <!--###################################################################################################################################
+                    ###################################################################################################################################
+                    ##############################################Unit Rate ###########################################################################
+                    ###################################################################################################################################
+                    ###################################################################################################################################-->
+                <table class="table table-striped table-bordered dataTable no-footer jambo_table">
+                    <thead>
+                        <tr>
+                            <td colspan="4">
+                                <strong> {{ 'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.TITLE' | translate }}</strong>
+                            </td>
+                        </tr>
+                    </thead>
+
+                    <thead>
+
+                        <tr>
+                            <th></th>
+
+                            <th></th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.TOOLTIP_START_DATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.START_DATE' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.TOOLTIP_END_DATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.END_DATE' | translate }}
+                            </th>
+
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+                        <tr>
+                            <!-- RATE -->
+                            <td>
+
+                                <p> <strong>
+                                        {{'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.RATE_LABEL'| translate }}
+                                    </strong>
+                                </p>
+
+                            </td>
+
+                            <td>
+                                {{ data[0].productRate.rateAmount }}
+                                <!-- Aclaraciones 
+                                    a)para Rate usar  el rates.RateAmount correspondiente al products.RateNumber 
+                                    b)para Future Rate 1 rates.FutureAmount que corresponde al products.FutureRateNumber 
+                                    c)para Future Rate 2 rates.FutureAmount que corresponde al products.FutureRateNumber  
+                                -->
+                            </td>
+
+                            <td>
+                                N/A
+                                <!-- Aclaraciones este campo deberia llevar ContractsDefault.StartValidtyDate pero no lo encontre(json ni servicio)
+                                    a)para Rate usar el ContractsDefault.StartValidtyDate  
+                                    b)para Future Rate 1 products.FutureRateDate 
+                                    c)para Future Rate 2 rates.FutureAmountDate 
+                                -->
+                            </td>
+
+
+                            <td>
+                                N/A
+                                <!-- Aclaraciones este campo deberia llevar ContractsDefault.EndValidtyDate pero no lo encontre(json ni servicio)
+                                    a)para Rate sin Future Rate 1 configurado se usa ContractsDefault.EndValidtyDate
+                                    b)para Rate con Future Rate 1 configurado se usa products.FutureRateDate[1 day]
+                                    c)para Future Rate 1 sin Future Rate 2 configurado se usa ContractsDefault.EndValidtyDate
+                                    d)para Future Rate 1 con Future Rate 2 configurado se usa products.FutureRateDate[1 day]] 
+                                    e)para Future Rate 2 se usa ContractsDefault.EndValidtyDate
+                                    f)si Future Rate 1 o 2 no estan configurados se tiene que mostrar la leyenda de "disabled" en su correspondiente fila
+                                -->
+                            </td>
+
+                        </tr>
+                         <!-- FUTURE RATE 1 -->
+
+                        <tr>   
+                            <td>
+
+                                <p> <strong>
+                                        {{'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.FUTURE_RATE_LABEL'| translate }} 1
+                                    </strong>
+                                </p>
+
+                            </td>
+
+                            <td>
+                                <div *ngIf="data[0].productFutureRate.rateAmount!=null; else elseBlock">{{ data[0].productFutureRate.rateAmount }}</div>
+                                <ng-template #elseBlock>disabled</ng-template>
+                                
+                                <!-- Aclaraciones 
+                                    a)para Rate usar  el rates.RateAmount correspondiente al products.RateNumber 
+                                    b)para Future Rate 1 rates.FutureAmount que corresponde al products.FutureRateNumber
+                                    c)para Future Rate 2 rates.FutureAmount que corresponde al products.FutureRateNumber  
+                                -->
+                            </td>
+
+                            <td>
+                                <div *ngIf="data[0].productFutureRateDate!=null; else elseBlock">{{ data[0].productFutureRateDate |  date: 'dd-MM-yyyy'  }}</div>
+                                <ng-template #elseBlock>disabled</ng-template>
+                                <!-- Aclaraciones este campo deberia llevar ContractsDefault.StartValidtyDate pero no lo encontre(json ni servicio)
+                                    a)para Rate usar el ContractsDefault.StartValidtyDate  
+                                    b)para Future Rate 1 products.FutureRateDate 
+                                    c)para Future Rate 2 rates.FutureAmountDate 
+                                -->
+                            </td>
+
+
+                            <td>
+                                <div *ngIf="data[0].productFutureRateDate!=null; else elseBlock">{{ data[0].productFutureRateDate.productFutureRate |  date: 'dd-MM-yyyy'  }}</div>
+                                <ng-template #elseBlock>disabled</ng-template>
+                                 <!-- Aclaraciones este campo deberia llevar ContractsDefault.EndValidtyDate pero no lo encontre(json ni servicio)
+                                    a)para Rate sin Future Rate 1 configurado se usa ContractsDefault.EndValidtyDate
+                                    b)para Rate con Future Rate 1 configurado se usa products.FutureRateDate[1 day]
+                                    c)para Future Rate 1 sin Future Rate 2 configurado se usa ContractsDefault.EndValidtyDate
+                                    d)para Future Rate 1 con Future Rate 2 configurado se usa products.FutureRateDate[1 day]] 
+                                    e)para Future Rate 2 se usa ContractsDefault.EndValidtyDate
+                                    f)si Future Rate 1 o 2 no estan configurados se tiene que mostrar la leyenda de "disabled" en su correspondiente fila
+                                -->
+                            </td>
+
+                        </tr>
+                        <!-- FUTURE RATE 2, no encontre el json del productCatalog MOCK ni en los servicios relacionado una estructura que contenga future rate 2 --> 
+                        <tr>   
+                            <td>
+
+                                <p> <strong>
+                                        {{'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.FUTURE_RATE_LABEL'| translate }} 2
+                                    </strong>
+                                </p>
+
+                            </td>
+
+                            <td>
+                                <div *ngIf="data[0].productFutureRate.rateAmount!=null; else elseBlock">{{ data[0].productFutureRate.rateAmount }}</div>
+                                <ng-template #elseBlock>disabled</ng-template>
+                                
+                                <!-- Aclaraciones 
+                                    a)para Rate usar  el rates.RateAmount correspondiente al products.RateNumber 
+                                    b)para Future Rate 1 rates.FutureAmount que corresponde al products.FutureRateNumber
+                                    c)para Future Rate 2 rates.FutureAmount que corresponde al products.FutureRateNumber  
+                                -->
+                            </td>
+
+                            <td>
+                                <div *ngIf="data[0].productFutureRateDate!=null; else elseBlock">{{ data[0].productFutureRateDate |  date: 'dd-MM-yyyy'  }}</div>
+                                <ng-template #elseBlock>disabled</ng-template>
+                                <!-- Aclaraciones este campo deberia llevar ContractsDefault.StartValidtyDate pero no lo encontre(json ni servicio)
+                                    a)para Rate usar el ContractsDefault.StartValidtyDate  
+                                    b)para Future Rate 1 products.FutureRateDate 
+                                    c)para Future Rate 2 rates.FutureAmountDate 
+                                -->
+                            </td>
+
+
+                            <td>
+                                <div *ngIf="data[0].productFutureRateDate!=null; else elseBlock">{{ data[0].productFutureRateDate.productFutureRate |  date: 'dd-MM-yyyy'  }}</div>
+                                <ng-template #elseBlock>disabled</ng-template>
+                                 <!-- Aclaraciones este campo deberia llevar ContractsDefault.EndValidtyDate pero no lo encontre(json ni servicio)
+                                    a)para Rate sin Future Rate 1 configurado se usa ContractsDefault.EndValidtyDate
+                                    b)para Rate con Future Rate 1 configurado se usa products.FutureRateDate[1 day]
+                                    c)para Future Rate 1 sin Future Rate 2 configurado se usa ContractsDefault.EndValidtyDate
+                                    d)para Future Rate 1 con Future Rate 2 configurado se usa products.FutureRateDate[1 day]] 
+                                    e)para Future Rate 2 se usa ContractsDefault.EndValidtyDate
+                                    f)si Future Rate 1 o 2 no estan configurados se tiene que mostrar la leyenda de "disabled" en su correspondiente fila
+                                -->
+                            </td>
+
+                        </tr>
+                </table>
+                 <!--###################################################################################################################################
+                    ###################################################################################################################################
+                    ##############################################Fee Capping ###########################################################################
+                    ###################################################################################################################################
+                    ###################################################################################################################################-->
+                
+                <table class="table table-striped table-bordered dataTable no-footer jambo_table">
+                    <thead>
+                        <tr>
+                            <td colspan="7">
+                                <strong> {{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.TITLE' | translate }}</strong>
+                            </td>
+                        </tr>
+                    </thead>
+
+                    <thead>
+
+                        <tr>
+
+                            <th class="style-aling-to-center">{{
+                                'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.PASSENGER_TITLE' | translate }}</th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.TOOLTIP_DAILY_CAPPING' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.DAILY_CAPPING' | translate }}</th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.TOOLTIP_DAILY_DEFINITION' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.DAILY_DEFINITION' | translate }}</th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.TOOLTIP_WEEKLY_CAPPING' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.WEEKLY_CAPPING' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.TOOLTIP_WEEKLY_DEFINITION' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.WEEKLY_DEFINITION' | translate }}</th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.TOOLTIP_MONTHLY_CAPPING' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.MONTHLY_CAPPING' | translate }}</th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.TOOLTIP_MONTHLY_DEFINITION' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.MONTHLY_DEFINITION' | translate }}</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr *ngFor="let feeCappingDiscount of data[0].feeCappingDiscountList ; let i = index ">
+
+                            <td>
+
+                                <p>
+                                    <strong>
+                                        {{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.PASSENGERS' | translate }} {{
+                                        feeCappingDiscount.passengerQty }}
+                                        <!-- Aclaracion asumo que es feeCappingDiscount.passengerQty del MOCK , indicar si usar otro campo el documento no lo aclara -->
+                                    </strong>
+                                </p>
+
+                            </td>
+
+                            <td> 
+                                <div *ngIf="feeCappingDiscount.maxAmount!=null; else elseBlock">{{ feeCappingDiscount.maxAmount }}</div>
+                                <ng-template #elseBlock>not avaible</ng-template>
+                            </td>
+                            <!-- Aclaracion 
+                                Si no si no esta configurado  feeCappingDiscount.PeriodTypeNumber ninguno de los periodos se cambia el valor por la leyenda "not avaible" 
+                            -->
+
+                            <td> 
+                                <div *ngIf="feeCappingDiscount.dueTime!=null; else elseBlock">{{ feeCappingDiscount.dueTime }}</div>
+                                <ng-template #elseBlock>not avaible</ng-template>
+                                
+                                <!-- Aclaracion 
+                                     Si no si no esta configurado  feeCappingDiscount.PeriodTypeNumber ninguno de los periodos se cambia el valor por la leyenda "not avaible" 
+                                 -->
+                            </td>
+
+                            <td> 
+                                <div *ngIf="feeCappingDiscount.maxAmount!=null; else elseBlock">{{ feeCappingDiscount.maxAmount }}</div>
+                                <ng-template #elseBlock>not avaible</ng-template>
+                                <!-- Aclaracion
+                                     a) aca uso maxAMount por que no tengo otro que seapara la semana
+                                     b)Si no si no esta configurado  feeCappingDiscount.PeriodTypeNumber ninguno de los periodos se cambia el valor por la leyenda "not avaible" 
+                                 -->
+                            </td>
+
+                            <td> 
+                                <div *ngIf="feeCappingDiscount.dueDayWeek!=null; else elseBlock">{{ feeCappingDiscount.dueDayWeek }}</div>
+                                <ng-template #elseBlock>not avaible</ng-template>
+                                
+                            </td>
+
+                            <td> 
+                                <div *ngIf="feeCappingDiscount.maxAmount!=null; else elseBlock">{{ feeCappingDiscount. maxAmount}}</div>
+                                <ng-template #elseBlock>not avaible</ng-template>
+                                
+                                <!-- Aclaracion
+                                     a) aca uso maxAMount por que no tengo otro que sea para el mes
+                                     b)Si no si no esta configurado  feeCappingDiscount.PeriodTypeNumber ninguno de los periodos se cambia el valor por la leyenda "not avaible" 
+                                 -->
+                            </td>
+
+                            <td>
+                                <div *ngIf="feeCappingDiscount.dueDayMonth!=null; else elseBlock">{{ feeCappingDiscount. dueDayMonth}}</div>
+                                <ng-template #elseBlock>not avaible</ng-template>
+                                <!-- Aclaracion 
+                                     Si no si no esta configurado  feeCappingDiscount.PeriodTypeNumber ninguno de los periodos se cambia el valor por la leyenda "not avaible" 
+                                 -->
+                            </td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+                <!--###################################################################################################################################
+                    ###################################################################################################################################
+                    ##############################################Timeframe ###########################################################################
+                    ###################################################################################################################################
+                    ###################################################################################################################################-->
+                
+                <table class="table table-striped table-bordered dataTable no-footer jambo_table">
+                    <thead>
+                        <tr>
+                            <td colspan="8">
+                                <strong> {{ 'TARIFFICATION.LABELS.DETAIL.TIMEFRAME.TITLE' | translate }}</strong>
+                            </td>
+                        </tr>
+                    </thead>
+
+                    <thead>
+
+                        <tr>
+                            <th></th>
+
+                            <th></th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.TOOLTIP_START_DATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.TIMEFRAME.START_DATE' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.TOOLTIP_START_DATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.TIMEFRAME.END_DATE' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.TOOLTIP_START_DATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.TIMEFRAME.TIME_FRAME' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.TOOLTIP_START_DATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.TIMEFRAME.TRIP_ZONE' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.TOOLTIP_START_DATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.TIMEFRAME.TRIP_TARIFF_RULE' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.UNIT_RATE.TOOLTIP_END_DATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.TIMEFRAME.MAX_TRIPS_QTY' | translate }}
+                            </th>
+
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+                        <tr *ngFor="let timeFrameMatrix of data[0].timeFrameMatrixList ; let i = index">
+                            <td>
+
+                                <p> <strong>
+                                        {{'TARIFFICATION.LABELS.DETAIL.TIMEFRAME.RATE_LABEL'| translate }} {{i}}
+                                        
+                                    </strong> 
+                                </p>
+                            </td>
+                            <td>
+                                <ng-template *ngIf="timeFrameMatrix.timeFrameMatrixRate.rateAmount!=null&&i==1;then rate else futureRate">
+                                    <ng-template #rate>
+                                        {{ ConttractDefault.StartDateDefault }} 
+                                    </ng-template>
+                                    <ng-template #futureRate>
+                                        <ng-template *ngIf="timeFrameMatrix.dueDayMonth!=null&&i=>2;then futureRate2">
+                                            {{ timeFrameMatrix.futureAmountDate }} 
+                                        </ng-template>
+                                        <ng-template #elseBlock>
+                                            disabled
+                                        </ng-template>
+                                    </ng-template>
+                                </ng-template>
+                                <!-- Aclaraciones este campo deberia llevar ContractsDefault.StartValidtyDate pero no lo encontre(json ni servicio) -->
+                                <!-- Rates.RatesAmount -->
+                                <!-- Se usa el Rates.RatesAmount correspondiente al RateGroupsNumber -->
+                            </td>
+                            <td>
+                                <ng-template *ngIf="timeFrameMatrix.timeFrameMatrixRate.rateAmount!=null&&i==1;then rate else futureRate">
+                                    <ng-template #rate>
+                                        {{ ConttractDefault.EndDate }}  
+                                    </ng-template>
+                                    <ng-template #futureRate>
+                                        <ng-template *ngIf="timeFrameMatrix.dueDayMonth!=null&&i=>2;then futureRate2">
+                                            {{ timeFrameMatrix.futureRateDate }} 
+                                        </ng-template>
+                                        <ng-template #elseBlock>
+                                            disabled
+                                        </ng-template>
+                                    </ng-template>
+                                </ng-template>
+                                <!-- Aclaraciones uso el productRate.RateAmount por que no estoy seguro si deberia existir otro campo que sea rates.RateAmount
+                                    a)para Rate usar Se muestra el ContractsDefault.StartValidtyDate  
+                                    b)para Future Rate  rates.FutureRateDate 
+                                -->
+                            </td>
+
+
+                            <td>
+                                <div *ngIf="timeFrameMatrix.timeFrame!=null; else elseBlock">{{ timeFrameMatrix.timeFrame}}</div>
+                                <ng-template #elseBlock>disabled</ng-template>
+                            </td>
+                            <td>
+                                {{ timeFrameMatrix.timeFrame  }}
+                                <!-- TimeFrameMatrix.TimeFrame -->
+                                <!-- Se usa TimeFrameMatrix.TimeFrame convertido a minutos
+                                a)Si Future Rate esta configurado muestra el mismo campo correspondiente
+                                a)Si Future Rate no esta configurado se muestra la leyenda "disabled" -->
+                            </td>
+
+                            <td>
+                                {{ timeFrameMatrix.tripZoneReference  }}
+                                <!-- TimeFrameMatrix.TripZoneReference - zones.Name -->
+                                <!-- 
+                                    a)Si TimeFrameMatrix.TripZoneReference = 0 se cambia por la leyenda "All zones"
+                                    b)Si Future Rate esta configurado se muetra el valor correspondiente(TimeFrameMatrix.TripZoneReference - zones.Name)
+                                    c)Si Future Rate no esta configurado se cambia por la leyenda "disable" 
+                                -->
+                            </td>
+
+                            <td> 
+                                {{ timeFrameMatrix.firstTripTariffRule  }}
+                                <!-- TimeFrameMatrix.FirstTripTariffeRule-tariff rule name -->
+                                <!-- 1:fixed tariff
+                                2:connection tariff
+                                4:time frame tariff
+                                8:tap in tariff
+                                16:tap out tariff
+                                128:fee capping discount tariff
+                                256:origin destination tariff
+                                a)Si Future Rate esta configurado se muetra el valor correspondiente
+                                b)Si Future Rate no esta configurado se cambia por la leyenda "disable"  -->
+                            </td>
+
+
+                            <td>
+                                
+                                {{ timeFrameMatrix.maxTripQTY  }}
+                                <!-- TimeFrame.Maxtripqty -->
+                                <!-- 
+                                    a)Si Future Rate esta configurado se muetra el valor correspondiente
+                                    b)Si Future Rate no esta configurado se cambia por la leyenda "disable" 
+                                 -->
+                            </td>
+                        </tr>
+                        <!-- FUTURE RATE  No encontre ni el mock ni el servicio REST algo que reflejara una posible estructura para mostrar-->
+                        <tr>
+                            <td>
+                                
+                                <p> <strong>
+                                        {{'TARIFFICATION.LABELS.DETAIL.TIMEFRAME.FUTURE_RATE_LABEL'| translate }}
+                                        <!-- ACA AGREGAR LOGICA PARA MOSTRAR SI ES 1 RATE SINO ES UNO FUTURE RATE , MIRAR QUE ONDA LA NUMERACION -->
+                                    </strong> </p>
+
+                            </td>
+
+                            <td>
+                                disabled
+                                <!-- Se usa el Rates.RatesAmount correspondiente al RateGroupsNumber -->
+                            </td>
+
+                            <td>
+                                disabled
+                                <!-- Aclaraciones 
+                                    a)para Rate usar Se muestra el ContractsDefault.StartValidtyDate  
+                                    b)para Future Rate  rates.FutureRateDate 
+                                -->
+                            </td>
+
+
+                            <td>
+                                disabled
+                                <!-- Aclaraciones 
+                                    a)para Rate sin Future Rate configurado se usa el ContractsDefault.EndValidtyDate  
+                                    b)para Rate con Future Rate configurado se usa el ContractsDefault.EndValidtyDate  
+                                    b)para Future Rate  rates.FutureRateDate 
+                                -->
+                            </td>
+
+
+
+                            <td>
+                                disabled
+                                <!-- Se usa TimeFrameMatrix.TimeFrame convertido a minutos
+                                a)Si Future Rate esta configurado muestra el mismo campo correspondiente
+                                a)Si Future Rate no esta configurado se muestra la leyenda "disabled" -->
+                            </td>
+
+                            <td>
+                                disabled
+                                <!-- 
+                                    a)Si TimeFrameMatrix.TripZoneReference = 0 se cambia por la leyenda "All zones"
+                                    b)Si Future Rate esta configurado se muetra el valor correspondiente(TimeFrameMatrix.TripZoneReference - zones.Name)
+                                    c)Si Future Rate no esta configurado se cambia por la leyenda "disable" 
+                                -->
+                            </td>
+
+                            <td>
+                                disabled
+                                <!-- 1:fixed tariff
+                                2:connection tariff
+                                4:time frame tariff
+                                8:tap in tariff
+                                16:tap out tariff
+                                128:fee capping discount tariff
+                                256:origin destination tariff
+                                a)Si Future Rate esta configurado se muetra el valor correspondiente
+                                b)Si Future Rate no esta configurado se cambia por la leyenda "disable"  -->
+                            </td>
+
+
+                            <td>
+                                disabled
+                                <!-- 
+                                    a)Si Future Rate esta configurado se muetra el valor correspondiente
+                                    b)Si Future Rate no esta configurado se cambia por la leyenda "disable" 
+                                 -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                 <!--###################################################################################################################################
+                    ###################################################################################################################################
+                    ##############################################Partial Capping ###########################################################################
+                    ###################################################################################################################################
+                    ###################################################################################################################################-->
+                
+
+
+                <table class="table table-striped table-bordered dataTable no-footer jambo_table">
+                    <thead>
+                        <tr>
+                            <td colspan="7">
+                                <strong> {{ 'TARIFFICATION.LABELS.DETAIL.FEE_CAPPING.TITLE' | translate }}</strong>
+                            </td>
+                        </tr>
+                    </thead>
+                    <thead>
+
+                        <tr>
+
+                            <th></th>
+
+                            <th class="style-aling-to-center">{{
+                                'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.PASSENGERS' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.TOOLTIP_MAX_AMOUNT' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.MAX_MOUNT' | translate }}</th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.TOOLTIP_START_TIME' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.START_TIME' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.TOOLTIP_END_TIME' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.END_TIME' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.TOOLTIP_START_DATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.START_DATE' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.TOOLTIP_END_DATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.END_DATE' | translate }}
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+                        
+                        <tr *ngFor="let partialCapping of data[0].partialCappingDiscountList ; let i = index">
+
+                            <td> <strong>{{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.EVENT' | translate }} 1
+                                    <!--Falta agregar logica para que tome el nro real del event -->
+                                </strong> </td>
+
+                            <td class="style-aling-to-right">
+
+                                <p> {{partialCapping.passengerQty}}
+                                    {{'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.PASSENGER'| translate
+                                    | plural:partialCapping.passengerQty}}
+                                </p>
+
+                            </td>
+
+                            <td> {{ partialCapping.maxAmount }}</td>
+
+                            <td> {{ partialCapping.startTime }} </td>
+
+                            <td> {{ partialCapping.endTime }} </td>
+
+                            <td> {{ partialCapping.startDate | date: 'dd-MM-yyyy' }}</td>
+
+                            <td> {{ partialCapping.endDate | date: 'dd-MM-yyyy'}}</td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Weekdays</strong>
+                            </td>
+                            <td colspan="6">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.MON' | translate }}&emsp;<input
+                                    type="checkbox">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.TUE' | translate }}&emsp;<input
+                                    type="checkbox">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.WED' | translate }}&emsp;<input
+                                    type="checkbox">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.THU' | translate }}&emsp;<input
+                                    type="checkbox">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.FRI' | translate }}&emsp;<input
+                                    type="checkbox">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.SAT' | translate }}&emsp;<input
+                                    type="checkbox">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.SUN' | translate }}&emsp;<input
+                                    type="checkbox">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.PARTIAL_CAPPING.ALL' | translate }}&emsp;<input
+                                    type="checkbox">
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="7">
+                        </tr>
+                    </tbody>
+                    <tr>
+                        <td colspan="3">
+                            <button type="button" class="btn btn-default ">{{ 'TARIFFICATION.ACTIONS.DELETE_EVENT'|
+                                translate }}</button>
+
+                            <button type="button" class="btn btn-default ">{{ 'TARIFFICATION.ACTIONS.ADD_EVENT' |
+                                translate }}</button>
+                        </td>
+                        <td colspan="4"></td>
+                    </tr>
+                </table>
+                 <!--###################################################################################################################################
+                    ###################################################################################################################################
+                    ##############################################Especial Days  ###########################################################################
+                    ###################################################################################################################################
+                    ###################################################################################################################################-->
+                
+
+                <table class="table table-striped table-bordered dataTable no-footer jambo_table">
+                    <thead>
+                        <tr>
+                            <td colspan="5">
+                                <strong> {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_DAYS.TITLE' | translate }}</strong>
+                            </td>
+                        </tr>
+                    </thead>
+
+                    <thead>
+
+                        <tr>
+
+                            <th></th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_DAYS.TOOLTIP_DATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_DAYS.DATE' | translate }}</th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_DAYS.TOOLTIP_NAME' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_DAYS.NAME' | translate }}</th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_DAYS.TOOLTIP_RESTRICTION_STATUS' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_DAYS.RESTRICTION_STATUS' | translate }}</th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_DAYS.TOOLTIP_ACTION' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_DAYS.ACTION' | translate }}
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+                        <tr *ngFor="let specialDayItem of data[0].specialDaysRestrictionsList ; let i = index ">
+
+
+                            <td>
+
+                                <p> <strong> {{'TARIFFICATION.LABELS.DETAIL.SPECIAL_DAYS.LABEL'| translate }} {{
+                                        specialDayItem.specialDayRestrictionNumber }}</strong> </p>
+
+                            </td>
+
+                            <td> {{ specialDayItem.specialDays.specialDayDate }}</td>
+
+                            <td> {{ specialDayItem.specialDays.specialDayName }} </td>
+
+                            <!-- este campo hay que cambiarlo si es 0 por disable product y si es 1 enabled product -->
+                            <td> {{ specialDayItem.enableProduct }} </td>
+
+                            <td> <button type="button" class="button-delete">{{
+                                    'TARIFFICATION.ACTIONS.DELETE_SPECIAL_DAY' |translate }}</button> </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- este campo hay que sumarle 1 ultimo specialDayRestrictionNumber  -->
+                                <p> <strong> {{'TARIFFICATION.LABELS.DETAIL.SPECIAL_DAYS.LABEL'| translate }} </strong>
+                                </p>
+                            </td>
+                            <td> <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
+                                    max="2018-12-31"></td>
+                            <td> <input type="text"> </td>
+                            <td>product enabled</td>
+                            <td>
+                                <!-- <button type="button" [status]="{'1': 'SUCCESS'}[1]" class="label label-default label-type">{{ 'TARIFFICATION.ACTIONS.ADD_SPECIAL_DAY'
+                                    |translate }}</button>   -->
+                                <!-- <ap-button type="button" [status]="{'1': 'SUCCESS', '0': 'DANGER'}[1]"> {{'TARIFFICATION.ACTIONS.ADD_SPECIAL_DAY' | translate }}</ap-button> -->
+                               
+
+                                <button type="button" class="button-add">{{
+                                    'TARIFFICATION.ACTIONS.ADD_SPECIAL_DAY' |translate }}</button>
+                               
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <!--###################################################################################################################################
+                    ###################################################################################################################################
+                    ##############################################Especial Services  ###########################################################################
+                    ###################################################################################################################################
+                    ###################################################################################################################################-->
+               
+
+                <table class="table table-striped table-bordered dataTable no-footer jambo_table">
+                    <thead>
+                        <tr>
+                            <td colspan="9">
+                                <strong> {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.TITLE' | translate
+                                    }}</strong>
+                            </td>
+                        </tr>
+                    </thead>
+
+                    <thead>
+
+                        <tr >
+                            <th></th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.TOOL_TDAILY_RATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.DAILY_RATE' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.TOOL_TDAILY_DEFINITION' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.DAILY_DEFINITION' | translate }}
+                            </th>
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.TOOL_TWEEKLY_RATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.WEEKLY_RATE' | translate }}
+                            </th>
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.TOOL_TWEEKLY_DEFINITION' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.WEEKLY_DEFINITION' | translate }}
+                            </th>
+
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.TOOL_TMONTHLY_RATE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.MONTHLY_RATE' | translate }}
+                            </th>
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.TOOL_TMONTHLY_DEFINITION' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.MONTHLY_DEFINITION' | translate }}
+                            </th>
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.TOOL_TTAP_TYPE' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.TAP_TYPE' | translate }}
+                            </th>
+                            <th class="style-aling-to-center"
+                                ap-tooltip="{{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.TOOL_TIP_MAX_APP' | translate }}">
+                                {{ 'TARIFFICATION.LABELS.DETAIL.SPECIAL_SERVICIES.MAX_APP' | translate }}
+                            </th>
+
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+                        <tr *ngFor="let services of data[0].specialServicesList ; let i = index">
+
+
+                            <td> {{ services.specialServiceName }} </td>
+
+                            <td> {{ services.rateAmount }} </td>
+
+                            <td> {{ services.rateAmount }}</td>
+
+                           
+                            <td> {{ services.dueDayWeek }}</td>
+
+                            <td> {{ services.dueTime }}</td>
+
+                            <td> {{ services.dueDayMonth }} </td>
+
+                            <td> {{ services.operationType }} </td>
+
+                            <td> {{ services.applicationsNumber }} </td>
+
+                            <td> {{ services.applicationsNumber }} </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </ap-panel-content>
+
+        </ap-panel>
+
+    </ap-page-content>
+</ap-page>
+
+<!-- Templates esto lo agregamos o no!-->
+<ng-template #errorTemplate>
+    <ap-jumbotron [icon]="'fa-exclamation'">{{ 'DEVICE.MSG.ERROR_TECHNIQUE' | translate }}</ap-jumbotron>
+</ng-template>

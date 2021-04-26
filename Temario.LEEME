@@ -1,0 +1,107 @@
+Programa
+
+Unidad 1. Introducción
+
+Modelo cliente/servidor
+Sitio web como la interacción entre HTML + CSS + JS
+HTML: describir de la mejor forma posible un contenido
+CSS: definir reglas visuales para estos contenidos
+JS: interacción y manipulación del contenido
+Desarrollador Front End Developer y Diseñador Web: diferencias
+Navegador web como intérprete de estos códigos
+Herramientas de trabajo
+
+
+Unidad 2. Introducción a HTML5
+
+Estructura básica de una página
+Etiquetas
+Elementos de bloque
+Titulares
+Párrafos
+Elementos de línea
+Links
+Imágenes
+Elementos contenedores
+Etiquetas compuestas
+Listados
+
+
+Unidad 3. Introducción a CSS
+
+Reglas de estilo como atributos
+Tipografía
+Color de frente y fondo
+Márgenes internos y externos
+Bordes
+Definiendo estilos en una página
+Selectores
+Buenas prácticas
+
+
+
+Unidad 4: Introducción a JS
+
+Javascript: el lenguaje de la web
+Similitudes y diferencias con los demás lenguajes de programación
+Diferencias entre un maquetador web y un desarrollador web
+Navegador web como intérprete del lenguaje
+consola de desarrollador
+DOM: document object model
+Acceder a elementos de la página
+Leer y modificar contenidos, atributos y estilos
+Modelo orientado a eventos
+Funciones anónimas
+
+
+Unidad 5: Formularios y tablas en HTML5
+
+Markup HTML
+CSS aplicado a formularios
+JS aplicado a formularios
+Validar campos
+Cancelar eventos
+Tablas y markup HTML
+CSS aplicado a tablas
+Listados
+
+
+Unidad 6: AJAX
+
+Qué es AJAX
+Realizar pedidos asincrónicos al servidor
+Validación de formularios en tiempo de ejecución
+Manipulación DOM a partir de respuesta ajax
+Debugging
+
+
+Unidad 7: JSON
+
+Qué es JSON
+Recibir JSON como respuesta ajax
+Convertir JSON a objetos javascript
+Manipular tablas, selectores y listados en tiempo de ejecución
+JSONP
+
+
+Unidad 8: Utilizando librerías javascript: JQuery
+
+Concepto de librería
+Introducción a jQuery
+Manipulación DOM con jQuery
+Eventos con jQuery
+AJAX con jQuery
+
+
+Unidad 9: Plugins en Javascript
+
+Cómo entender un plugin
+Pasador de imágenes
+Validación de formularios avanzada
+Reordenamiento de listados y tablas interactivo
+Closures
+Prototype: emulación de clases
+Encapsulamiento
+Errores comunes
+Javascript orientado a aplicaciones o proyectos complejos
+Estrategias para generar módulos reutilizables

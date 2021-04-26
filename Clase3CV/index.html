@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo first-child</title>
+    <style type="text/css">
+    p:first-child{
+        color: greenyellow;
+        background-color: black;
+        padding: 5px;
+    }
+    ul li {
+        color: blue;
+    }
+
+    ul li:first-child {
+        color: red;
+        font-weight: bolder;
+    }
+
+    </style>
+</head>
+    <div>
+        <p>Este texto esta seleccionado </p>
+        <p>
+            este texto no esta seleccionado
+        </p>
+        <p>
+            este texto no esta seleccionado
+        </p>
+    </div>
+
+    <ul>
+        <li>objeto 1</li>
+        <li>objeto 2</li>
+        <li>objeto 3
+            <ul>
+                <li>objeto 3.1</li>
+                <li>objeto 3.2</li>
+                <li>objeto 3.3</li>
+            </ul>
+        </li>
+    </ul>
+<body>
+    
+</body>
+</html>

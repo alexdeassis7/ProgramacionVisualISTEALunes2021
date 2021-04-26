@@ -1,0 +1,90 @@
+/*transformamos los tag h1 y h2 a Mayusculas */
+
+h1, h2 {
+    text-transform: uppercase;
+}
+
+/*-------------  ASIDE - barra izquierda ------------- */
+aside{
+    background-color: #647087;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+aside * {
+    color:white;
+}
+
+aside h2 {
+    letter-spacing: 5px;
+}
+
+.main-container{
+    
+    display: flex;
+    width: 1200px;
+}
+/* main{
+    background-color: sienna;
+} */
+/*--------------- general  ---------------*/
+ul{
+    list-style-type: none;
+}
+
+#profile-pic{
+    text-align: center;
+   
+}
+
+#profile-pic img{
+    border-radius: 50%;
+    width: 250px;
+}
+/* --------------- estilo de las references ---------------*/
+.references{
+    display: flex;
+    background-color:rgba(241, 199, 213, 0.3);
+}
+
+.references article{
+    width: 50%;
+    text-align: center;
+}
+
+.references img {
+    width: 100px;
+}
+
+dl {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+dt , dd{
+
+    border-top: 1px solid white;
+    flex-basis: 40%;
+    
+}
+
+meter {
+    display: block;
+    width: 80%;
+}
+meter::-webkit-meter-optimum-value {
+
+    background-color : #EdC0Af;
+ 
+  }
+
+  meter::-webkit-meter-bar  {
+    background: #FFFFFF;
+  
+  }
+  
+
+
+
+
+/* agregar un first child  */

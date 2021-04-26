@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manipulamos el Document</title>
+    </head>
+    <body>
+            <h1 id="titulo">Soy un titulo </h1>
+
+            <p id="parrafo" ></p>
+
+        <h2>Soy un titulo mas pequeño 1</h2>
+        <h2>Soy un titulo mas pequeño 2</h2>
+        <h2>Soy un titulo mas pequeño 3</h2>
+
+        <h3>Usamos las funciones y manipulamos el DOM</h3>
+        <p id="contenedor"></p>
+        <p id="contenedorDos"></p>
+
+        <h3>Eventos : los eventos son algo que les pasa 
+            a los elementos del HTML por ejemplo :
+        </h3>
+
+        <h2>eventos del mouse</h2>
+        <button onclick="miFuncion()" >haceme click onclick</button>
+        <button onmouseover="alert(' me pasate el mouse por encima')" >me pasate el mouse por encima , onmouseover</button>
+        <button onmouseout="alert(' aleja el cursor')" > aleja el cursor , onmouseout</button>
+        <button onmousemove="console.log('move el cursor del mouse sobre mi')" >move el cursor del mouse sobre mi ,onmouseout</button>
+
+        <h2>eventos del teclado </h2><br>
+        onchange<input type="text" onchange="console.log('haz hecho un cambio en la caja')"><br>
+        onblur <input type="text" onblur="console.log('haz dejado de hacer foto en la caja ')"><br>
+        onfocus <input type="text" onfocus="console.log('haz Hecho de hacer foto en la caja ')"><br>
+        onKeypress <input type="text" onkeypress="console.log('haz presionado una tecla en la caja ')"><br>
+        onKeyUp <input type="text" onkeyup="console.log('haz dejado de presionar una tecla dentro de la caja ')"><br>
+
+<p>Tambien a los eventos se los puede 
+    llamar directamente desde el codigo js </p>
+
+<button onclick="saludarA('pedro')">click pedro</button>
+<button onclick="saludarA('Alex')">click Alex</button>
+<button onclick="saludarA('Fede')">click Fede</button>
+<button onclick="saludarA('Lucas')">click Lucas</button>
+
+
+<button>Ana</button>
+<button>Pedro</button>
+<button>Martin</button>
+<button>Ramona</button>
+
+
+        <script src="script.js"></script>
+
+    </body>
+</html>

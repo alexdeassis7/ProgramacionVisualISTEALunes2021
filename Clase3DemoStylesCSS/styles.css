@@ -1,0 +1,27 @@
+/* creamos un fichero con la declaracion de estilos  */
+
+body{
+
+    background-image:url("https://www.todopaisajes.com/800x600/paisaje-de-flores.jpg") ;
+}
+p {
+    font-size: 2cm;
+    font-family: Arial, Helvetica;
+    font-weight: normal;
+}
+
+h1{
+    font-size: 4cm;
+    text-align: center;
+    background-color: brown;
+}
+/* definimos una clase  */
+.miclase{
+    color: blue;
+}
+
+/*definimos los estilos para el id capa 1*/
+#capa1{
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+}
