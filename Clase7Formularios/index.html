@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Primer Formulario</title>
+    <link rel="stylesheet" href="estilos/style.css">
+</head>
+<body>
+    <!-- method indica la manera en la que se enviaran los datos al backEnd 
+    puede ser "GET" o "POST" , en caso de no indicar ningun method 
+    los datos Se enviaran por defecto como "GET" -->
+
+    <form method="GET" class="formulario">
+        <h2 class="formulario__titulo">CONTACTENOS</h2>
+
+        <input type="text" class="formulario__input" required minlength="6" maxlength="12">
+        <label class="formulario__label">Nombres</label>
+     
+        <input type="text" class="formulario__input" >
+        <label class="formulario__label">Correo</label>
+        
+        <input type="text" class="formulario__input" >
+        <label class="formulario__label">Phone</label>
+
+        <input type="text" class="formulario__input">
+        <label class="formulario__label">Mensaje</label>
+
+        <input type="submit" class="formulario__submit">
+
+
+      
+    </form>
+
+      <!-- Para vincular la etiqueta al campo, se le debe dar un atributo for que
+        tiene el mismo valor que la id del campo. Se aprecia mejor en un ejemplo:
+        Código: HTML
+        <form method="post" action="tratamiento.php">
+            <p>
+                <label for="pseudo">Vuestro nombre</label> : <input type="text"
+                    name="nombre" id="nombre" />
+            </p>
+        </form> -->
+    <script src="form.js"></script>
+    
+</body>
+</html> 
