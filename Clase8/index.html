@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScrip - Ovtener el valor de un input de varias maneras
+        </title>
+    </head>
+    <style>
+    form {
+        width: 250px;
+        height: 180px;
+        border: 1px solid rgb(231, 14, 14);
+        padding: 10px;
+    }        
+    </style>
+    <script>
+       function capturar(){
+            //obtenemos el valor por el numero de elemento 
+            var porElementos = document.forms["form1"].elements[0].value;
+
+            console.log(porElementos.length);
+
+            //console.log(porElementos);
+            //Obtenemos el valor por el id 
+            var porId = document.getElementById("nombre").value;
+            //Obtenemos el valor por el Nombre 
+            var porNombre= document.getElementsByName("nombre")[0].value;
+            //console.log(porNombre);
+
+            //Obtenemos el valor por tipo de tag 
+            var porTagName = document.getElementsByTagName("input")[0].value;
+           // console.log(porTagName);
+
+           //Obtenemos el valor por el nombre de la clase 
+           var porClassName = document.getElementsByClassName("formulario")[0].value;
+           //console.log(porClassName);
+
+            document.getElementById("resultado").innerHTML=" \
+            Por elementos: " + porElementos + "\
+            <br> Por ID: " + porId +"\
+            <br> Por Nombre: " + porNombre +"\
+            <br> Por TagName: " + porTagName  +"\
+            <br> Por ClassName: " + porClassName  ;
+       }
+    </script>
+    <body>
+        <h1>Como obtener el valor de un input de varias maneras </h1>
+        <form id="form1">
+            Nombre:<input  name="nombre" value="jose" id="nombre"
+                class="formulario" >
+
+            <p><input type="checkbox" name="acepto" id="acepto"
+                    class="formulario_check">Acepto el contrato</p>
+
+            <p>De acuerdo : SI <input type="radio" name="deacuerdo" value="si">
+                No <input type="radio" name="deacuerdo" value="no">
+            </p>
+            Seleccione la opcion deseada:
+            <select name="seleccion" id="seleccion" class="formulario_select">
+                <option value="1">primera</option>
+                <option value="2">segunda</option>
+                <option value="3">tercera</option>
+            </select>
+        </form>
+        <input type="button" value="obtener el nombre" onclick="capturar()">
+        <div id="resultado"></div>
+
+    </body>
+</html>

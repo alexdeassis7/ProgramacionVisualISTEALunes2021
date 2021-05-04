@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tablas</title>
+    </head>
+    <body>
+        <h3>estructura basica de una tabla </h3>
+        <!-- contenedor principal -->
+        <table>
+            <!-- representando a las filas contenedoras de celdas -->
+            <tr>
+                <!-- representando a las celdas  -->
+                <td>Celda 1</td>
+                <td>Celda 2</td>
+                <td>Celda 3</td>
+            </tr>
+            <!-- representando a las filas contenedoras de celdas -->
+            <tr>
+                <!-- representando a las celdas  -->
+                <td>Celda 4</td>
+                <td>Celda 5</td>
+                <td>Celda 6</td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+        <h3>Celdas de encabezado</h3>
+        <table>
+            <tr>
+                <!-- el atributo scope proveee un mecanismo para indicar explicitamente una celda
+                de encabezado , este atributo solo puede ser declarado en una celda de encabezado
+                 y tomar los siguientes valores : 'row' , 'col', 'colgroup' , 'rowgroup',
+                 los valores col y row indican que la celda de encabezado provee informacion para el resto de celdas
+                  en la columna o fila  (respectivamente ) -->
+                <th scope="row">Dia</th>
+                <!-- celda de encabezado representadas por el elemento th 
+                con ubicadas en la primera fila de la tabla por enciama de 
+                las celdas comunes      -->
+                <th>Hoy</th>
+                <th>Mañana</th>
+                <th>Jueves</th>
+            </tr>
+            <!-- representando a las filas contenedoras de celdas -->
+            <tr>
+                <th>Condicion</th>
+                <!-- representando a las celdas  -->
+                <td>Soleado</td>
+                <td>Mayormente Soleado</td>
+                <td>Parcialmente Nublado</td>
+            </tr>
+            <!-- representando a las filas contenedoras de celdas -->
+            <tr>
+                <th>Temperatura</th>
+                <!-- representando a las celdas  -->
+                <td>19°C</td>
+                <td>17°C</td>
+                <td>12°C</td>
+            </tr>
+
+            <!-- representando a las filas contenedoras de celdas -->
+            <tr>
+                <th>Vientos</th>
+                <!-- representando a las celdas  -->
+                <td>E 13 Km/h</td>
+                <td>E 11 Km/h</td>
+                <td>S 16 Km/h</td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+
+        <!-- el tituto  -->
+
+        <table>
+            <caption>Consumo de combustible de los autos a los largo de las
+                pruebas de manejo</caption>
+            <tr>
+                <th scope="col">Car</th>
+                <!-- representando a las celdas  -->
+                <td>Enero</td>
+                <td>Febrero</td>
+                <td>Marzo</td>
+            </tr>
+            <tr>
+                <th>Jeep Grand Cherokee</th>
+                <!-- representando a las celdas  -->
+                <td>1254 lts</td>
+                <td>1589 lts</td>
+                <td>966 lts</td>
+            </tr>
+            <tr>
+                <th>Chevrolet Camaro</th>
+                <!-- representando a las celdas  -->
+                <td>1588 lts</td>
+                <td>1899 lts</td>
+                <td>2100 lts</td>
+            </tr>
+
+
+        </table>
+
+        <h3>unificacion de celdas</h3>
+        <!-- la unificacion de celdas es un mecanismo por el cual podemos combinar o
+        fusionar celdas
+        adyacentes ( td y th ) en una tabla , este efecto lo logramos mediante
+        el uso de los atributos
+        colspan (para unificacion horizontal y row span para unificacion
+        vertical )
+        estos atributos pueden tomar un valor entero mayor a cero que reprenta
+        el numero e celdas que
+        participaran en la unificacion -->
+        <table>
+            <tr>
+                <th></th>
+                <th>Dia 1</th>
+                <th>Dia 2</th>
+                <th>Dia 3</th>
+                <th>Dia 4</th>
+            </tr>
+            <tr>
+                <th>Fernando (Lastimado)</th>
+                <td colspan="3">0 km</td>
+                <td>4 km</td>
+            </tr>
+            <tr>
+                <th>Juan Manuel</th>
+                <td>23 km</td>
+                <td>18 km</td>
+                <td>19 km</td>
+                <td>12 km</td>
+            </tr>
+
+        </table>
+
+
+        <br>
+        <br>
+        <br>
+
+        <table>
+            <tr>
+                <th></th>
+                <th>Basico</th>
+                <th>Completo</th>
+            </tr>
+            <tr>
+                <th>Intalacion</th>
+                <td rowspan="2">Gratis!</td>
+                <td>$599</td>
+            </tr>
+            <tr>
+                <th>Primer año</th>
+                <td>$199</td>
+            </tr>
+            <tr>
+                <th>Segundo año</th>
+                <td>$299</td>
+                <td>$399</td>
+            </tr>
+
+        </table>
+
+    </body>
+</html>

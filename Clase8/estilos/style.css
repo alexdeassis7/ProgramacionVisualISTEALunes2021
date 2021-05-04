@@ -1,0 +1,85 @@
+body{
+    background: url("../imagenes/fondoFormulario.jpg");
+    /*declaramos el size de la imagen  100vw (view por hide)
+    significa 100% del ancho de la ventan y 100vh 100% del alto de la ventana */
+    background-size: 100vw 100vh;
+    /*hacemos que la imagen sea fija y no se repita */
+    background-attachment: fixed;
+    /*sacamos el margen del body */
+    margin: 0;
+    font-family: monospace;
+}
+
+form{
+    /*le damos ancho y margen para que nos quede 
+    centrado horizontalmente */
+    width: 450px;
+    margin: auto;
+    /*el 0.4 es el alpha que seria la transparencia */
+    background: rgba(0,0,0, 0,4);
+    /*relleno vertical 10px y 20px relleno horizontal
+    ahora tendra un ancho de 490px por que se le suma
+     los 20px por dos */
+    padding:  10px 20px;
+    /*para que tenga el padding de los 20px hacia adetro y no
+    nos agrande los 450px definidos previamente*/
+    box-sizing: border-box;
+    margin-top: 20px;
+    /*redondeamos las esquinas del form */
+    border-radius: 7px;
+}
+
+
+input , textarea{
+    width: 100%;
+    /*agregamos un margen para que los separe */
+    margin-bottom: 20px;
+    padding: 7px; 
+    box-sizing: border-box;
+    font-size: 17px;
+    /*quitamos los bordes */
+    border: none;
+}
+
+textarea{
+    /*ponemos un limite para agrandar el text-area y que no 
+    se nos rompa nuestra maqueta */
+    /*alto minimo */
+    min-height:100px ;
+    /*alto maximo */
+    max-height: 200px;
+    /*ancho maximo*/
+    max-width: 100%;
+}
+
+h2{
+    color: white;
+    text-align: center;
+    margin: 0;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+#boton{
+    background: #31384A;
+    color: white;
+    padding: 20px;
+}
+/*hacemos que aparezca la mano cuando pasamos por encima 
+del boton con la pseudo clase "hover" que nos permite indicarle 
+que estilos va a tener el elemento cuando el mouse 
+este por encima del mismo */
+#boton:hover{
+    cursor: pointer;
+    background: grey;
+}
+
+/**Lo hacemos responsive con los media Query que son como un if 
+son estilos condicionales , esto se realizara si solo si 
+el ancho maximo es de 480px */
+@media(max-width:480px){
+    form{
+        width: 100%;
+        /* background-color: hotpink; */
+    }
+}

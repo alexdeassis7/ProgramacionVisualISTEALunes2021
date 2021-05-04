@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulario</title>
+        <link rel="stylesheet" href="estilos/style.css">
+    </head>
+ 
+    <body>
+        <form>
+            <h2>CONTACTO</h2>
+            <input type="text" name="nombre" placeholder="Ingrese su nombre">
+            <input type="email" name="correo" placeholder="Ingrese su Correo">
+            <input type="tel" name="tel" placeholder="Ingrese su Telefono">
+            <textarea type="text" name="mensaje" placeholder="Ingrese aqui su mensaje"></textarea>
+            <input type="submit" name="ENVIAR" id="boton" >
+        </form>
+    </body>
+<!-- duda astrid  -->
+
+<script>
+    document.getElementById("boton").addEventListener("click",function(event){
+        console.dir(event);
+        event.preventDefault() //cancelamos un comportamiento por default del evento! 
+    })
+</script>
+
+</html>
