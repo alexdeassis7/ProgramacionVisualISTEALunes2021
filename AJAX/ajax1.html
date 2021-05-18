@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DEmo AJAX</title>
+        <script>
+        /*la "clase" XMLHttpRequest nos permite hacer uso de AJAX y relizar una peticion 
+        hacia el back end usando metodo GET Y POST, esta clase no sirve en navegadores muy antiguos ,
+        si estas sobre un browser antiguo debes usar la clase ActivexObject 
+        ej:
+        new XMLHttpRequest();
+        new ActivexObject("Microsoft.XMLHTTP") 
+        entonces vamos a utilizar instancias de estas dos clases para manejar las peticiones http*/
+
+        //como sabemos que clase usar?
+        // if(window.XMLHttpRequest) si es true usamos la clase XMLHttpRequest() caso contrario utilizamos 
+        // la clase ActivexObject
+
+            var peticionHttp;
+            //funcion que nos instancia el objeto adecuado 
+            function inicializar_XHR(){
+                if(window.XMLHttpRequest){
+                    //navegador moderno                     
+                    console.log("esta en un navegador moderno");
+                    peticionHttp = new XMLHttpRequest();
+                }else{
+                    //navegador antiguo
+                    console.log("esta en un navegador antiguo");
+                    peticionHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            }
+                /*Funcion que realiza el Request:
+                PARAMETRO :
+                1)url: aca tenemos la url hacia donde realizaremos el request
+                2)metodo : aca vemos si se debe enviar por GET o por POST 
+                3)funcionA : una vez obtenidos los datos de la url tenemos que actiar y hacer algo con esos datos 
+                por ejemplo actualizar el DOM (contenido que se renderiza en la pagina ) y mostrar el nuevo contenido 
+                */
+                function realizarPeticion(url , metodo , funcionA){
+                    //definir una funcion de como se debera actuar , aqui estamos diciendo que cuando este lista 
+                    //la peticion http , osea cuando se capturo el dato recien se llame a la funcioA
+                    peticionHttp.onreadystatechange = funcionA;
+                    //open y send nos permiten realizar el request al back 
+                    //open(METODO, UrlAdondeRealizarElRequest , TRUE si es asincronica)
+                    //si al ultimo parametro le pasamos un false seria una peticion sincronica,la idea es evitar eso 
+                    //el metodo open() requiere de dos parametros (metodo y url ) y acepta de forma opcinal 
+                    //otro tres parametros , 
+                    //definicion formal del metodo open():
+                    // open(string medoto ,string URL [boolean asincronico , string usuario , string password]);
+                    peticionHttp.open(metodo, url ,true); 
+                
+                    peticionHttp.send(null); //esto lo veremos mas adelante !, // null es el parametro del contenido 
+                }
+
+                function descargarArchivo(){
+                    //inicializamos el objeto http
+                    inicializar_XHR();
+                    //invocamos a la funcion que realiza el request 
+                    realizarPeticion('archivo.txt', 'GET',funcActuadora );
+
+                }
+
+                //esta funcion estara siendo invocada constantemente ante cualquier cambio que tenga el 
+                //onreadystatechange  por eso el console.log() se vera varias veces en pantalla 
+                function funcActuadora(){
+                    console.log('Hola Ajax!');
+                        //que es el 4 ? valor numerico (entero ) que almacena el estado de la peticion 
+                        /*los valores definidos para la propiedad readyStates son los siguientes:
+                        valor : descripcion 
+                        0 : no Inicializado (objeto creado , pero no se ah invocado al metodo Open )
+                        1 : cargando  (objeto creado, pero no se ah invocado al metodo send)
+                        2 : cargado (se ah invocado el metodo send ,pero el servidor aun no ah respondido)
+                        3 : Interactivo (se ah recibido algunos datos de la respuesta , aunque no se puede aun emplear la propiedad
+                                      responseText)
+                        4 : Completo (se han recibido todos los datos desde el servidor )*/
+                    if(peticionHttp.readyState == 4){
+                        if(peticionHttp.status == 200){//200 es el estado ok http ,estado de la respuesta
+                            //en el atributo responseText del objeto XHR
+                            //es donde se guarda por defecto la respuesta del server
+                            document.write(peticionHttp.responseText);
+                        }
+                    }
+
+                }
+                //este evento "onload" se ejecuta cuando la pagina ah cargado completamente!
+                //cuando escribimos una funcion sin parentesisi estams asignando toda la funcion 
+                //como si fuese un objeto hacia algun evento ,estamos diciendo en este caso que :
+                //"cuado la ventana este lista se invoque a descargarArchivo()"
+                window.onload = descargarArchivo
+
+    </script>
+    </head>
+    <body>
+
+    </body>
+</html>
