@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body
+{
+  font-family: 'Roboto', sans-serif;
+  background: #000000;
+}
+
+#messagebox{
+	color:green;
+	right: 80px;
+    position: absolute;	
+}
+#messagebox.error{
+	color:red;
+	right: 38px;
+    top: 73px;
+    font-size: 11px;	
+}
+
+.reset
+{
+	font-size: 14px;
+	position: relative;
+	top: 30px;
+	left: 50px;
+}
+.signup
+{
+	font-size: 14px;
+	position: relative;
+	top: 10px;
+}
+form
+{
+	position: relative;
+	top: 10px;
+}
+.header
+{
+	font-size: 35px;
+	position: relative;
+	top: 15px;
+}
+.main-wrap
+{
+	position: relative;
+	top: 70px;
+	width: 335px;
+	height: 350px;
+	border-radius: 10px;
+	background: white;
+	box-shadow: 0 0 12px #6200ff;
+}
+label[for='username']
+{
+	position: relative;
+	right: 112px;
+	top: 14px;
+}
+input[type='username']
+{
+	padding: 12px;
+	width: 230px;
+	height: 3px;
+	position: relative;
+	right: 12px;
+	top: 20px;
+	border: 2px solid #fff;
+	box-shadow: 0 0 12px #a3a3a3;
+	outline: none;
+	border-radius: 30px;
+}
+label[for='password']
+{
+	position: relative;
+	right: 95px;
+	top: 14px;
+}
+input[type='password']
+{
+	padding: 12px;
+	width: 230px;
+	height: 3px;
+	position: relative;
+	right: 12px;
+	top: 20px;
+	border: 2px solid #fff;
+	box-shadow: 0 0 12px #a3a3a3;
+	outline: none;
+	border-radius: 30px;
+}
+input:hover
+{
+	box-shadow: 0 0 12px #b3b3b3;
+}
+button
+{
+	position: relative;
+	top: 55px;
+	right: 91px;
+	width: 105px;
+	height: 35px;
+	font-size: 19px;
+	background: #653aaa;
+	border: 1px solid #3b65ff;
+	outline: none;
+	color: white;
+	border-radius: 20px;
+	font-family: 'Roboto', sans-serif;
+	box-shadow: 0 0 12px #87a1ff;
+}
+button:hover
+{
+	background: #3b44ff;
+	box-shadow: 0 0 10px #3b44ff;
+}

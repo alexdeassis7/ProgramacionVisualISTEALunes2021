@@ -5,16 +5,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Crear Usuario</title>
+        <link rel="stylesheet" href="./css/style.css">
         <script>
+
+
                 var peticionHttp;
                  function inicializar_XHR(){
                      if(window.XMLHttpRequest){
                          peticionHttp = new XMLHttpRequest();
                     }else{
-                        peticionHttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+                        peticionHttp = new ActiveXObject("Microsoft.XMLHTTP");
                          }
-    
-                 }   
+
+                 }
 
                  function realizarPeticion(url, metodo , funcionA){
                      peticionHttp.onreadystatechange = funcionA;
@@ -23,7 +26,13 @@
                  }
 
                  function  descargarArchivo() {
-                     var usuario = document.getElementById('user').value;
+                     var usuario = document.getElementById('username').value;
+                     var boxmessage = document.getElementById("messagebox");
+                     if (usuario.length > 0) {
+                     	boxmessage.style.display = "block";
+                     }else{
+						boxmessage.style.display = "none";
+                     }
                      console.log("chequeamos si existe el usuario " + usuario );
                      inicializar_XHR();
                      realizarPeticion('http://localhost:8081/ValidaFormDB/ValidaUser?user='+ usuario,'GET',funcActuadora)
@@ -33,12 +42,17 @@
                     if(peticionHttp.readyState == 4){
                         if(peticionHttp.status == 200){
                             console.log("Respuesta del Server : " + peticionHttp.responseText);
+                            var boxmessage = document.getElementById("messagebox");
                             if(peticionHttp.responseText == 'true'){
                                 console.log('El nombre de usuario Ya existe intente con otro nombre ');
+                                boxmessage.innerHTML = "El nombre de usuario Ya existe intente con otro nombre";
+                                boxmessage.classList.add("error");
                             }else{
                                 console.log('El nombre de usuario Esta disponible ! ');
+                                boxmessage.innerHTML = "El nombre de usuario Esta disponible ! ";
+                                boxmessage.classList.remove("error");
                             }
-                            
+
                         }
                     }
                 }
@@ -49,10 +63,29 @@
 
     </head>
     <body>
-        <form>
-            <input type="text" id="user" placeholder="ingrese el nombre de usuario" onkeyup="descargarArchivo()" >
 
-        </form>
+        <center>
+            <div class="main-wrap">
+                <span class='header'>Crear Usuario
+                    </span><br>
 
+                <form>
+                    <label for="username">Usuario</label><br>
+                    <input type="username" name="username" id="username" placeholder="Ingrese el nombre de usuario" onkeyup="descargarArchivo()"><br>
+                    <br>
+                    <small id="messagebox"></small>
+                    <br>
+                    <label for="password">Contraseña</label><br>
+                    <input type="password" name="password" id="password" placeholder="•••••••••••"><br>
+
+                    <button id="submit">Registrar</button>
+                </form>
+            </div>
+          </center>
     </body>
 </html>
+
+
+
+
+
