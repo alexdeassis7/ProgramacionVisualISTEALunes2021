@@ -1,0 +1,7 @@
+prerrequisitos: tener java 1.9 o superior instalado y configurado
+
+1)deployar archivo bikeProgramacionVisual.war en la carpeta webapps de un server tomcat 
+
+2)depositar la base de datos bike.db en la carpeta /bin del server tomcat
+
+3) iniciar el server tomcat con el script startup.bat
