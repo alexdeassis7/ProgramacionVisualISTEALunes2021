@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crear Usuario</title>
+        <script>
+                var peticionHttp;
+                 function inicializar_XHR(){
+                     if(window.XMLHttpRequest){
+                         peticionHttp = new XMLHttpRequest();
+                    }else{
+                        peticionHttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+                         }
+    
+                 }   
+
+                 function realizarPeticion(url, metodo , funcionA){
+                     peticionHttp.onreadystatechange = funcionA;
+                     peticionHttp.open(metodo, url ,true );
+                     peticionHttp.send(null);
+                 }
+
+                 function  descargarArchivo() {
+                     var usuario = "Astrid";
+                     console.log("chequeamos si existe el usuario " + usuario );
+                     inicializar_XHR();
+                     realizarPeticion('http://localhost:8081/ValidaFormDB/ValidaUser?user='+ usuario,'GET',funcActuadora)
+                }
+
+                function funcActuadora() {
+                    if(peticionHttp.readyState == 4){
+                        if(peticionHttp.status == 200){
+                            console.log("Respuesta del Server : " + peticionHttp.responseText);
+                            if(peticionHttp.responseText == 'true'){
+                                console.log('El nombre de usuario Ya existe intente con otro nombre ');
+                            }else{
+                                console.log('El nombre de usuario Esta disponible ! ');
+                            }
+                            
+                        }
+                    }
+                }
+
+                window.onload = descargarArchivo;
+    </script>
+    </head>
+    <body>
+
+    </body>
+</html>
